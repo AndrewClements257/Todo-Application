@@ -5,8 +5,8 @@
         </div>
         <div class="new-todo">
             <form  v-on:submit.prevent="createTodo()">
-                <input type="text" placeholder="Todo Name" v-model="newTodo.name"/>
-                <button>Add</button>
+                <input type="text" placeholder="Todo Name" v-model="newTodo.name" required />
+                <button>Add Todo</button>
             </form>
         </div>
         <div class="list">
@@ -19,12 +19,12 @@
             </ul>
         </div>
         <div class="completed">
-            <h1>Completed</h1>
+            <h1>Completed {{ completedTodoCount }}</h1>
             <ul>
                 <li v-for="todo in completed" :key="todo.todo_id" v-bind:class="{ 'todo-completed': todo.isComplete }">
                    <input type="checkbox" v-model="todo.isComplete" v-on:change="checkTodoBox(todo)"/>
                     {{ todo.name }}
-                    <span @click="deleteTodo(todo.todo_ID)">×</span>
+                    <span class="delete" @click="deleteTodo(todo.todo_ID)">×</span>
                 </li>
             </ul>
         </div> 
@@ -37,7 +37,6 @@ import TodoService from "../services/TodoService";
 export default {
     name: "todo-list",
     created() {
-        this.getTodos(1);
         this.getCompleted(1);
     },
     data() {
@@ -114,6 +113,9 @@ computed: {
         },
         currentListName(){
             return this.$store.state.currentList.name;
+        },
+        completedTodoCount(){
+            return this.$store.state.completed.length;
         }
         
     },
@@ -126,6 +128,10 @@ computed: {
 </script>
 
 <style>
+    .todo-list {
+        margin-left: 250px;
+    }
+
     .title {
         padding: 50px;
         padding-left: 25px;
@@ -180,9 +186,27 @@ computed: {
       padding-bottom: 25px;
   }
 
+  .new-todo>form>button {
+    padding: 4px 15px;
+    background-color: rgb(250, 250, 250);
+    color: #616161;
+    border-style: none;
+    font-weight: 500;
+    border-radius: 0%;
+  }
+
+  .new-todo>form>button:hover {
+    color: dodgerblue;
+    background-color: rgb(248, 248, 248);
+  }
+
   li.todo-completed {
     text-decoration: line-through;
     color: darkgray;
+}
+
+.completed>h1 {
+    color: #616161;
 }
         
 </style>

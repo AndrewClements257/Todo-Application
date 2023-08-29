@@ -5,13 +5,17 @@
         <h1>Andrew Clements</h1>
     </div>
     <ul>
-        <li v-for="list in todoLists" :key="list.list_id" @click="setTodos(list.list_ID), setCurrentList(list.list_ID)"> {{ list.name }} 
+        <li v-for="list in todoLists" :key="list.list_id" @click="setTodos(list.list_ID), setCurrentList(list.list_ID), getCompleted(list.list_ID)"> {{ list.name }} 
             <span class="delete" @click="deleteList(list.list_ID)">×</span>
         </li>
     </ul>
-    <input type="text" v-model="newList.name" placeholder="Enter list name">
-    <button @click="createList()">New List</button>
-    <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+    <form @submit.prevent="createList()">
+        <input type="text" v-model="newList.name" placeholder="Enter list name" required>
+        <button>Create List</button>
+    </form>
+    <div class="link">
+        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+  </div> 
   </section>
 </template>
 
@@ -22,7 +26,7 @@ import TodoService from '../services/TodoService';
 export default {
     name: "sidebar",
     created() {
-        this.getLists(this.$store.state.user.userId);
+        this.getInitialLists(this.$store.state.user.userId);
     },
     data() {
         return {
@@ -34,14 +38,27 @@ export default {
         }
     },
     methods: {
-        async getLists(id) {
+        async getInitialLists(id) {
     try {
         const response = await ListService.getLists(id);
         this.$store.commit("SET_LISTS", response.data);
         if(response.status === 200) {
                 this.setCurrentList(this.$store.state.lists[0].list_ID)
+                const response = await TodoService.getTodos(this.$store.state.lists[0].list_ID);
+                this.$store.commit("SET_TODOS", response.data);
+                const response2 = await TodoService.getCompleted(this.$store.state.lists[0].list_ID);
+                this.$store.commit("SET_COMPLETED", response2.data);
             }
 
+    } catch (error) {
+        // Handle the error here (e.g., show an error message, log the error, etc.)
+        console.error("Error fetching todo lists:", error);
+    }},
+
+        async getLists(id) {
+    try {
+        const response = await ListService.getLists(id);
+        this.$store.commit("SET_LISTS", response.data);
     } catch (error) {
         // Handle the error here (e.g., show an error message, log the error, etc.)
         console.error("Error fetching todo lists:", error);
@@ -62,7 +79,8 @@ export default {
             .then(response => {
                 if (response.status === 200) {
                     this.getLists(this.$store.state.user.userId);
-                    this.setTodos(this.$store.state.lists[0].list_ID);
+                    this.setTodos(this.$store.state.lists.length ? this.$store.state.lists.length - 1 : this.$store.state.lists[0].list_ID);
+                    this.setCurrentList(this.$store.state.lists.length ? this.$store.state.lists.length - 1 : this.$store.state.lists[0].list_ID);
                 }
             });
         },
@@ -73,6 +91,13 @@ export default {
     } catch (error) {
         // Handle the error here (e.g., show an error message, log the error, etc.)
         console.error("Error fetching todo lists:", error);
+    }},
+    async getCompleted(id) {
+    try {
+        const response = await TodoService.getCompleted(id);
+        this.$store.commit("SET_COMPLETED", response.data);
+    } catch (error) {
+        console.error("Error fetching completed todos:", error);
     }},
         async setCurrentList(id) {
             try {
@@ -96,13 +121,14 @@ export default {
     .sidebar {
         background-color: dodgerblue;
         color: white;
+        position: fixed;
         width: 250px;
         height: 100vh;
     }
     .sidebar>ul,h1 {
         padding: 0px 15px;
     }
-    .sidebar>button {
+    .sidebar>form>button {
         margin: 0px 15px;
     }
 
@@ -110,7 +136,13 @@ export default {
         margin-bottom: 25px;
     }
 
-    .sidebar>input[type=text] {
+    .sidebar>form>input[type=text] {
+        margin: 0px 0px 10px 15px;
+    }
+
+    .link {
+        position: fixed;
+        bottom: 0;
         margin: 0px 0px 10px 15px;
     }
 
