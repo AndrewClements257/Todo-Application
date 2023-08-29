@@ -22,13 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     lists: [],
     todos: [],
-<<<<<<< HEAD
-<<<<<<< HEAD
     completed: [],
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     currentList: {
       list_id: "",
       name: "",
@@ -61,18 +55,11 @@ export default new Vuex.Store({
     SET_TODOS(state, data) {
       state.todos = data;
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     SET_COMPLETED(state, data) {
       state.completed = data;
-=======
+    },
     FLIP_DONE(state, todoToChange) {
       todoToChange.isComplete = ! todoToChange.isComplete;
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
-    FLIP_DONE(state, todoToChange) {
-      todoToChange.isComplete = ! todoToChange.isComplete;
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     }
   }
 })

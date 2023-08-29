@@ -34,21 +34,12 @@ namespace Capstone.Controllers
             return todoDao.MarkTodoDone(todo);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
         [HttpGet("Completed/{list_id}")]
         public List<Todo> GetCompletedTodosByListID(int list_id)
         {
             return todoDao.GetCompletedTodosByListID(list_id);
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
         [HttpDelete("{todo_id}")]
         public bool DeleteTodo(int todo_id)
         {

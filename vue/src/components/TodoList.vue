@@ -18,8 +18,6 @@
                 </li>
             </ul>
         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <div class="completed">
             <h1>Completed</h1>
             <ul>
@@ -30,10 +28,6 @@
                 </li>
             </ul>
         </div> 
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     </section>
 </template>
 
@@ -44,13 +38,7 @@ export default {
     name: "todo-list",
     created() {
         this.getTodos(1);
-<<<<<<< HEAD
-<<<<<<< HEAD
         this.getCompleted(1);
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     },
     data() {
         return {
@@ -70,8 +58,6 @@ export default {
     } catch (error) {
         console.error("Error fetching todo lists:", error);
     }},
-<<<<<<< HEAD
-<<<<<<< HEAD
     async getCompleted(id) {
     try {
         const response = await TodoService.getCompleted(id);
@@ -79,10 +65,6 @@ export default {
     } catch (error) {
         console.error("Error fetching completed todos:", error);
     }},
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     createTodo() {
   TodoService.newTodo(this.newTodo)
     .then(response => {
@@ -105,8 +87,6 @@ export default {
             });
         },
         checkTodoBox(todo) {
-<<<<<<< HEAD
-<<<<<<< HEAD
     TodoService.markTodoDone(todo)
         .then(response => {
             if (response.status === 200) {
@@ -115,8 +95,6 @@ export default {
                 if (index !== -1) {
                     this.todos.splice(index, 1);
                 }
-                
-                // Optionally, you can update the completed list here as well
                 this.getTodos(this.$store.state.currentList.list_ID);
                 this.getCompleted(this.$store.state.currentList.list_ID);
             }
@@ -125,39 +103,15 @@ export default {
             console.error('Error marking todo as done:', error);
         });
 },
-=======
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
-      TodoService.markTodoDone(todo)
-        .then(response => {
-          if (response.status === 200) {
-            // Optionally, you can update the todos list here if needed
-            this.getTodos(this.$store.state.currentList.list_ID)
-          }
-        })
-        .catch(error => {
-          console.error('Error marking todo as done:', error);
-        });
-  },
-<<<<<<< HEAD
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     },
 computed: {
     
         todos() {
             return this.$store.state.todos;
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
         completed() {
             return this.$store.state.completed;
         },
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
         currentListName(){
             return this.$store.state.currentList.name;
         }
@@ -198,8 +152,6 @@ computed: {
     .list>ul {
         font-size: 25px;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     .completed {
         padding-left: 50px;
@@ -215,10 +167,6 @@ computed: {
         font-weight: bold;
         padding-left: 0px;
     }
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
     
     input[type=checkbox] {
         margin-right: 25px;

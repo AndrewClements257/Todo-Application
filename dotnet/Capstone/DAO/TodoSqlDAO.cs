@@ -23,14 +23,8 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-<<<<<<< HEAD
-<<<<<<< HEAD
                     SqlCommand cmd = new SqlCommand("SELECT * FROM todo WHERE list_id = @list_id  AND complete = 0;", conn);
-=======
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM todo WHERE list_id = @list_id;", conn);
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
+
                     cmd.Parameters.AddWithValue("@list_id", list_id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -49,10 +43,6 @@ namespace Capstone.DAO
             return list;
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
         public List<Todo> GetCompletedTodosByListID(int list_id)
         {
             List<Todo> list = new List<Todo>();
@@ -80,11 +70,6 @@ namespace Capstone.DAO
             return list;
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> 56236b7102f8fc2eb871b6e9f5ce06d0a83abdaf
-=======
->>>>>>> 48fa4ebe9f7bdb86c3afed4439c12c7f51eba555
         public bool CreateTodo(Todo todo)
         {
             try
