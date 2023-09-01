@@ -1,7 +1,8 @@
 <template>
   <div id="login">
-    <form @submit.prevent="login">
-      <h1 >Please Sign In</h1>
+    <h1 class="app-name">Andy's Todo App</h1>
+    <form class="login-form" @submit.prevent="login">
+      <h1 class="login-title">Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -10,13 +11,13 @@
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <input class="login-input" type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+        <input class="login-input" type="password" id="password" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
+      <button class="login-button" type="submit">Sign in</button>
       <p>
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
@@ -67,5 +68,68 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 32px;
+}
+#login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-form {
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  backdrop-filter: blur(3px); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-title {
+  font-size: 2em;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.app-name {
+  font-size: 5em;
+  font-weight: 600;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 64px;
+  color: white;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #7f0cf2;
+  color: white;
+  font-weight: normal;
+  font-size: 15px;
+}
+.login-button:hover {
+  background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
 }
 </style>

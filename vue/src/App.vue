@@ -9,3 +9,12 @@
     <router-view />
   </div>
 </template>
+
+<style scoped>
+#app {
+  background-color: dodgerblue;
+  background-size: cover;
+  /* font-family: Montserrat; */
+  min-height: 100vh;
+}
+</style>

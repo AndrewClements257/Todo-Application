@@ -130,6 +130,8 @@ computed: {
 <style>
     .todo-list {
         margin-left: 250px;
+        background-color: white;
+        height: 100vh;
     }
 
     .title {
