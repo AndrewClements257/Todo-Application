@@ -20,6 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    user_info: {},
     lists: [],
     todos: [],
     completed: [],
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     SET_USER(state, user) {
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
+    },
+    GET_USER_INFO(state, user_info) {
+      state.user_info = user_info;
     },
     LOGOUT(state) {
       localStorage.removeItem('token');

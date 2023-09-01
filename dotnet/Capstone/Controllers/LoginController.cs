@@ -68,5 +68,11 @@ namespace Capstone.Controllers
 
             return result;
         }
+
+        [HttpGet("/info/{user_id}")]
+        public UserInfo GetUserInfo(int user_id) 
+        {
+            return userDao.GetUserInfo(user_id);
+        }
     }
 }

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import AuthService from '../services/AuthService';
 import ListService from "../services/ListService";
 import TodoService from '../services/TodoService';
 
@@ -27,6 +28,7 @@ export default {
     name: "sidebar",
     created() {
         this.getInitialLists(this.$store.state.user.userId);
+        this.getUserInfo(this.$store.state.user.userId);
     },
     data() {
         return {
@@ -63,6 +65,16 @@ export default {
         // Handle the error here (e.g., show an error message, log the error, etc.)
         console.error("Error fetching todo lists:", error);
     }},
+
+    async getUserInfo(id) {
+        try {
+            const response = await AuthService.getInfo(id);
+            this.$store.commit("GET_USER_INFO", response.data);
+        } catch (error) {
+        // Handle the error here (e.g., show an error message, log the error, etc.)
+        console.error("Error getting user info:", error);
+    }},
+
         createList() {
             ListService
             .createList(this.newList)

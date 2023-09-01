@@ -10,6 +10,17 @@
     }
 
     /// <summary>
+    /// Model of non essential user infomation
+    /// </summary>
+     
+    public class UserInfo
+    {
+        public int UserId { get; set;}
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    /// <summary>
     /// Model of user data to return upon successful login
     /// </summary>
     public class ReturnUser

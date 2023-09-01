@@ -34,13 +34,15 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
+        first_name: "",
+        last_name: ""
       },
       invalidCredentials: false
     };
   },
   methods: {
-    login() {
+    async login() {
       authService
         .login(this.user)
         .then(response => {
