@@ -1,23 +1,23 @@
 <template>
   <div id="register" class="text-center">
-    <form @submit.prevent="register">
-      <h1>Create Account</h1>
+    <form class="register-form" @submit.prevent="register">
+      <h1 class="register-title" >Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <input class="register-input" type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+        <input class="register-input" type="password" id="password" v-model="user.password" required />
       </div>
       <div class="form-input-group">
         <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
+        <input class="register-input" type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit">Create Account</button>
+      <button class="register-button" type="submit">Create Account</button>
       <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
@@ -79,5 +79,70 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 32px;
+}
+#register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.register-form {
+  margin-top: 100px;
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  backdrop-filter: blur(3px); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-title {
+  font-size: 2em;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.app-name {
+  font-size: 5em;
+  font-weight: 600;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 64px;
+  color: white;
+}
+
+.register-input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #7f0cf2;
+  color: white;
+  font-weight: normal;
+  font-size: 15px;
+}
+.register-button:hover {
+  background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
 }
 </style>
+

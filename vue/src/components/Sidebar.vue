@@ -2,7 +2,7 @@
   <section class="sidebar">
     <div class="user-info">
         <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ" class="avatar" />
-        <router-link v-bind:to="{ name: 'profile' }" v-if="$store.state.token != ''">Andrew Clements</router-link>
+        <router-link v-bind:to="{ name: 'profile' }" v-if="$store.state.token != ''">{{ firstName }} {{ lastName }}</router-link>
     </div>
     <ul>
         <li v-for="list in todoLists" :key="list.list_id" @click="setTodos(list.list_ID), setCurrentList(list.list_ID), getCompleted(list.list_ID)"> {{ list.name }} 
@@ -124,6 +124,12 @@ export default {
     computed: {
         todoLists() {
             return this.$store.state.lists;
+        },
+        firstName() {
+            return this.$store.state.user_info.firstName;
+        },
+        lastName() {
+            return this.$store.state.user_info.lastName;
         }
     }
 }
