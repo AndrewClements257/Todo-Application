@@ -11,7 +11,6 @@
         <h1 class="info">Home Country</h1>
         <h1>United States</h1>
         </div>
-        <router-link v-bind:to="{ name: 'home' }" v-if="$store.state.token != ''">Home</router-link>
     </div>
 </template>
 
@@ -32,7 +31,7 @@ export default {
 <style>
 .user-profile {
   display: flex;
-  background-color: dodgerblue;
+  background-color: white;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
@@ -48,12 +47,12 @@ export default {
 .profile-info {
   padding: 40px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-  width: 70%;
+  background-color: dodgerblue;
+  width: 50%;
   text-align: center;
   color: white;
   text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
-  background: rgba(255, 255, 255, 0.1); 
+  /* background: rgba(255, 255, 255, 0.1); */
   border-radius: 10px; 
   backdrop-filter: blur(3px); 
   border: 1px solid rgba(255, 255, 255, 0.2);

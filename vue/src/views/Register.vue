@@ -18,7 +18,7 @@
         <input class="register-input" type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
       <button class="register-button" type="submit">Create Account</button>
-      <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      <router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link>
     </form>
   </div>
 </template>
@@ -90,10 +90,11 @@ label {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
+  background-color: #4368E3;
 }
 
 .register-form {
-  margin-top: 100px;
   padding: 32px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;
@@ -144,5 +145,14 @@ label {
 .register-button:hover {
   background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
 }
+
+.register-form>a:hover {
+        color: rgb(203, 194, 252);
+    }
+
+.register-form>a,a:visited {
+        color: white;
+    }
+
 </style>
 

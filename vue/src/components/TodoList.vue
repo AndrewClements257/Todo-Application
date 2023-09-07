@@ -129,9 +129,10 @@ computed: {
 
 <style>
     .todo-list {
-        margin-left: 250px;
         background-color: white;
-        height: 100vh;
+        height: 100%;
+        border-left: 1px solid #d1d1d1;
+        margin-top: 40px;
     }
 
     .title {
@@ -155,6 +156,7 @@ computed: {
 
     .delete {
         color: red;
+        cursor: pointer;
     }   
 
     .list>ul {

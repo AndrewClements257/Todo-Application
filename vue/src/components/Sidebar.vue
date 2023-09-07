@@ -2,10 +2,10 @@
   <section class="sidebar">
     <div class="user-info">
         <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ" class="avatar" />
-        <router-link v-bind:to="{ name: 'profile' }" v-if="$store.state.token != ''">{{ firstName }} {{ lastName }}</router-link>
+        <p>{{ firstName }} {{ lastName }}</p>
     </div>
     <ul>
-        <li v-for="list in todoLists" :key="list.list_id" @click="setTodos(list.list_ID), setCurrentList(list.list_ID), getCompleted(list.list_ID)"> {{ list.name }} 
+        <li v-for="list in todoLists" :key="list.list_id" @click="setTodos(list.list_ID), setCurrentList(list.list_ID), getCompleted(list.list_ID)" class="notActive" :class="{ isActive: list.name === $store.state.currentList.name }"> {{ list.name }} 
             <span class="delete" @click="deleteList(list.list_ID)">×</span>
         </li>
     </ul>
@@ -13,9 +13,6 @@
         <input type="text" v-model="newList.name" placeholder="Enter list name" required>
         <button>Create List</button>
     </form>
-    <div class="link">
-        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-  </div> 
   </section>
 </template>
 
@@ -130,20 +127,20 @@ export default {
         },
         lastName() {
             return this.$store.state.user_info.lastName;
-        }
+        },
     }
 }
 </script>
 
 <style>
     .sidebar {
-        background-color: dodgerblue;
-        color: white;
-        position: fixed;
+        background-color: white;
+        color: #616161;
         width: 250px;
-        height: 100vh;
+        height: 91vh;
+        margin-top: 40px;
     }
-    .sidebar>ul,h1 {
+    .sidebar>h1 {
         padding: 0px 15px;
     }
     .sidebar>form>button {
@@ -154,22 +151,13 @@ export default {
         margin-bottom: 25px;
     }
 
+    .sidebar>li {
+        width: 100%;
+        padding-left: 25px;
+    }
+
     .sidebar>form>input[type=text] {
         margin: 0px 0px 10px 15px;
-    }
-
-    .link {
-        position: fixed;
-        bottom: 0;
-        margin: 0px 0px 10px 15px;
-    }
-
-    .link>a,a:visited {
-        color: white;
-    }
-
-    .link>a:hover {
-        color: rgb(203, 194, 252);
     }
 
     .user-info {
@@ -180,6 +168,10 @@ export default {
         align-items: center;
     }
 
+    .user-info>p {
+        padding-left: 5px;
+    }
+
     .user-info>img {
         border-radius: 20px;
         width: 45px;
@@ -187,9 +179,20 @@ export default {
     }
 
     .delete {
-    color: red;
     cursor: pointer;
     display: block;
     float: right;
+    margin-top: 2px;
     }  
+
+    .isActive {
+    background-color: #E7F6FC;
+    font-weight: 500;
+    width: 100%;
+    padding: 10px 15px;  
+    }
+
+    .notActive {
+    padding: 10px 15px;   
+    }
 </style>

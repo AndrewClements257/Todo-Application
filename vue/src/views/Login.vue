@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <h1 class="app-name">Andy's Todo App</h1>
+    <h1 class="app-name">Andysoft Todo</h1>
     <form class="login-form" @submit.prevent="login">
       <h1 class="login-title">Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
@@ -18,8 +18,7 @@
         <input class="login-input" type="password" id="password" v-model="user.password" required />
       </div>
       <button class="login-button" type="submit">Sign in</button>
-      <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link>
     </form>
   </div>
 </template>
@@ -73,14 +72,15 @@ label {
   font-size: 1em;
   font-weight: normal;
   text-align: center;
-  margin-bottom: 32px;
+
 }
 #login {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  background-color: #4368E3;
   width: 100%;
+  height: 100%;
 }
 
 .login-form {
@@ -134,4 +134,15 @@ label {
 .login-button:hover {
   background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
 }
+
+.login-form>a:hover {
+        color: rgb(203, 194, 252);
+    }
+
+.login-form>a,a:visited {
+        color: white;
+    }
+
+    
+
 </style>
