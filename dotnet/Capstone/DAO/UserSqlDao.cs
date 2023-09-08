@@ -72,6 +72,32 @@ namespace Capstone.DAO
             return returnUser;
         }
 
+        public bool UpdateUserInfo(UserInfo user_info)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("UPDATE todo SET first_name = @first_name, last_name = @last_name WHERE user_id = @user_id;", conn);
+                    cmd.Parameters.AddWithValue("@first_name", user_info.FirstName);
+                    cmd.Parameters.AddWithValue("@last_name", user_info.LastName);
+                    cmd.Parameters.AddWithValue("@user_id", user_info.UserId);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    bool success = rowsAffected == 1;
+                    return success;
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
         public User AddUser(string username, string password, string role)
         {
             IPasswordHasher passwordHasher = new PasswordHasher();
