@@ -15,8 +15,18 @@
 </template>
 
 <script>
+import AuthService from '../services/AuthService';
+
 export default {
     name: 'profile',
+    created () {
+      this.getInfo(this.$store.state.user.userId);
+    },
+    data() {
+      return {
+        userInfo: {}
+      }
+    },
     computed: {
       firstName() {
             return this.$store.state.user_info.firstName;
@@ -24,6 +34,28 @@ export default {
         lastName() {
             return this.$store.state.user_info.lastName;
         }
+    },
+    methods: {
+      getInfo(id) {
+        try {
+          AuthService.getInfo(id).then(response => {
+            if(response.response === 200) {
+              this.userInfo = response.data;
+          }
+        });
+        } catch {
+          console.error("Error fetching user info")
+        }},
+        updateInfo(id) {
+        try {
+          AuthService.updateInfo(id).then(response => {
+            if(response.response === 200) {
+              this.userInfo = response.data;
+          }
+        });
+        } catch {
+          console.error("Error updating user info")
+        }}
     }
 }
 </script>

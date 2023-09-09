@@ -11,5 +11,8 @@ export default {
   },
   getInfo(id) {
     return axios.get(`/info/${id}`)
+  },
+  updateInfo(info) {
+    return axios.put(`/info`,info)
   }
 }
