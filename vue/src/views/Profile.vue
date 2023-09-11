@@ -1,30 +1,45 @@
 <template>
+<div>
     <div class="user-profile">
-        <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ" class="avatar" />
-        <div class="profile-info">
-        <h1 class="info">Full Name</h1>
+      <div class="top-image">
+      
+      </div>
+      <div class="avatar">
+        <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ"/>
         <h1>{{ firstName }} {{ lastName }}</h1>
-        <hr>
-        <h1 class="info">Date of Birth</h1>
-        <h1>August 13, 1995</h1>
-        <br>
-        <h1 class="info">Home Country</h1>
-        <h1>United States</h1>
+         <hr>
+      </div>
+      <div class="profile-info">
+        <div class="info">
+          <p>Date of Birth</p>
+          <p>August 13, 1995</p>
         </div>
+        <br>
+        <div class="info">
+          <p>Home Country</p>
+          <p>United States</p>
+        </div>
+      </div>
+      <button @click="modalVisible = !modalVisible">Edit Profile Info</button>
+    </div>
+    <edit-info-modal v-if="modalVisible === true" @close="close" />
     </div>
 </template>
 
 <script>
+import EditInfoModal from '../components/EditInfoModal.vue';
 import AuthService from '../services/AuthService';
 
 export default {
     name: 'profile',
+    components: { EditInfoModal },
     created () {
       this.getInfo(this.$store.state.user.userId);
     },
     data() {
       return {
-        userInfo: {}
+        userInfo: {},
+        modalVisible: false
       }
     },
     computed: {
@@ -55,21 +70,24 @@ export default {
         });
         } catch {
           console.error("Error updating user info")
-        }}
+        }},
+      close() {
+        this.modalVisible = false;
+      }
     }
 }
 </script>
 
-<style>
+<style scoped>
 .user-profile {
   display: flex;
-  background-color: white;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  padding-top: 60px;
+  padding-top: 50px;
   width: 100%;
   height: 100vh;
+  font-size: 20px;
 }
 
 .user-profile>img {
@@ -77,31 +95,68 @@ export default {
 }
 
 .profile-info {
-  padding: 40px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: dodgerblue;
-  width: 50%;
-  text-align: center;
-  color: white;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
-  /* background: rgba(255, 255, 255, 0.1); */
-  border-radius: 10px; 
-  backdrop-filter: blur(3px); 
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.info {
-  float: left;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 75px;
 }
 
 .avatar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.avatar>h1 {
+  font-weight: 500;
+  font-size: 35px;
+}
+
+.avatar>img {
     border-radius: 100px;
         width: 200px;
         padding-right: 5px;
+        margin-top: -100px;
 }
 
 hr {
+  border: 1px solid #b9b9b9;
+  width: 30%;
+}
+
+.top-image {
+  padding: 82px;
+  width: 100vw;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+  background: rgb(133,113,242);
+  background: linear-gradient(156deg, rgba(133,113,242,1) 0%, rgba(0,167,255,1) 50%, rgba(133,113,242,1) 100%);
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.info>p:nth-child(odd) {
+  font-weight: 500;
+}
+
+.user-profile>button {
+  width: 20%;
   border: none;
-  height: 1px;
+  background-color: #4368E3;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.user-profile>button:hover {
+  background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
+  cursor: pointer;
 }
 </style>

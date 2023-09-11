@@ -27,7 +27,7 @@
                     <span class="delete" @click="deleteTodo(todo.todo_ID)">×</span>
                 </li>
             </ul>
-        </div> 
+        </div>
     </section>
 </template>
 
@@ -127,7 +127,7 @@ computed: {
 }
 </script>
 
-<style>
+<style scoped> 
     .todo-list {
         background-color: white;
         height: 100%;
@@ -182,6 +182,7 @@ computed: {
         margin-right: 25px;
         width: 18px;
         height: 18px;
+        cursor: pointer;
     }
 
     .new-todo {
@@ -202,6 +203,7 @@ computed: {
   .new-todo>form>button:hover {
     color: dodgerblue;
     background-color: rgb(248, 248, 248);
+    cursor: pointer;
   }
 
   li.todo-completed {

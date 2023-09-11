@@ -145,6 +145,16 @@ export default {
     }
     .sidebar>form>button {
         margin: 0px 15px;
+        width: 40%;
+        border: none;
+        background-color: #4368E3;
+        color: white;
+        padding: 5px;
+    }
+
+    .sidebar>form>button:hover {
+        background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
+        cursor: pointer;
     }
 
     .sidebar>ul {
