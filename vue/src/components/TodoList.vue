@@ -14,7 +14,7 @@
                 <li v-for="todo in todos" :key="todo.todo_id" v-bind:class="{ 'todo-completed': todo.isComplete }">
                     <input type="checkbox" v-model="todo.isComplete" v-on:change="checkTodoBox(todo)"/>
                     {{ todo.name }}
-                    <span @click="deleteTodo(todo.todo_ID)">×</span>
+                    <span class="delete" @click="deleteTodo(todo.todo_ID)">×</span>
                 </li>
             </ul>
         </div>
@@ -129,7 +129,7 @@ computed: {
 
 <style scoped> 
     .todo-list {
-        background-color: white;
+        background-color: #fcfcfc;
         height: 100%;
         border-left: 1px solid #d1d1d1;
         margin-top: 40px;
@@ -155,12 +155,15 @@ computed: {
     }
 
     .delete {
-        color: red;
-        cursor: pointer;
-    }   
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    float: right;
+    }    
 
     .list>ul {
         font-size: 25px;
+        font-weight: 400;
     }
 
     .completed {
@@ -170,6 +173,7 @@ computed: {
 
     .completed>ul {
         font-size: 25px;
+        font-weight: 400;
     }
 
     .completed>h1 {
@@ -206,7 +210,16 @@ computed: {
     cursor: pointer;
   }
 
-  li.todo-completed {
+li {
+    background-color: white;
+    border-radius: 5px;
+    width: 80%;
+    margin: 10px 0px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+li.todo-completed {
     text-decoration: line-through;
     color: darkgray;
 }

@@ -132,13 +132,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .sidebar {
         background-color: white;
         color: #616161;
         width: 250px;
         height: 91vh;
-        margin-top: 40px;
+        margin-top: 80px;
     }
     .sidebar>h1 {
         padding: 0px 15px;
@@ -192,7 +192,6 @@ export default {
     cursor: pointer;
     display: block;
     float: right;
-    margin-top: 2px;
     }  
 
     .isActive {

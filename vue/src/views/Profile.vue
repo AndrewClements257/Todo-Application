@@ -22,7 +22,9 @@
       </div>
       <button @click="modalVisible = !modalVisible">Edit Profile Info</button>
     </div>
-    <edit-info-modal v-if="modalVisible === true" @close="close" />
+    <Transition>
+    <edit-info-modal v-if="modalVisible" @close="close" />
+    </Transition>
     </div>
 </template>
 
@@ -153,10 +155,21 @@ hr {
   color: white;
   padding: 15px;
   font-size: 20px;
+  border-radius: 4px;
 }
 
 .user-profile>button:hover {
   background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
   cursor: pointer;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

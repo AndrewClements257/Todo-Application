@@ -12,7 +12,7 @@
                         <input type="text" placeholder="Last Name" v-model="userInfo.lastName">
                     </li>
                     <li>
-                        <input type="text" placeholder="Birthday" v-model="userInfo.birthday">
+                        <input type="date" placeholder="Birthday" v-model="userInfo.birthday">
                     </li>
                     <li>
                         <input type="text" placeholder="Home Country" v-model="userInfo.homeCountry">
@@ -89,6 +89,7 @@ li > input {
     padding-top: 50px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 
 .form-container>button:nth-child(1) {
     position: absolute;
