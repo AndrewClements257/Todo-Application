@@ -56,18 +56,18 @@ export default {
       getInfo(id) {
         try {
           AuthService.getInfo(id).then(response => {
-            if(response.response === 200) {
+            if(response.status === 200) {
               this.userInfo = response.data;
           }
         });
         } catch {
           console.error("Error fetching user info")
         }},
-        updateInfo(id) {
+        updateInfo(userInfo) {
         try {
-          AuthService.updateInfo(id).then(response => {
-            if(response.response === 200) {
-              this.userInfo = response.data;
+          AuthService.updateInfo(userInfo).then(response => {
+            if(response.status === 200) {
+              this.getInfo(this.$store.state.user.userID);
           }
         });
         } catch {
