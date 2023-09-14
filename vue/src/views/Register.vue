@@ -1,5 +1,6 @@
 <template>
   <div id="register" class="text-center">
+    <h1 class="app-name">Andysoft To Do</h1>
     <form class="register-form" @submit.prevent="register">
       <h1 class="register-title" >Create Account</h1>
       <div role="alert" v-if="registrationErrors">
@@ -87,7 +88,6 @@ label {
 #register {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;

@@ -5,19 +5,20 @@
       
       </div>
       <div class="avatar">
-        <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ"/>
-        <h1>{{ firstName }} {{ lastName }}</h1>
+        <!-- <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ"/> -->
+              <img src="../me.jpg" />
+        <h1>{{ userInfo.firstName }} {{ userInfo.lastName }}</h1>
          <hr>
       </div>
       <div class="profile-info">
         <div class="info">
           <p>Date of Birth</p>
-          <p>August 13, 1995</p>
+          <p>{{ formattedBirthday }}</p>
         </div>
         <br>
         <div class="info">
           <p>Home Country</p>
-          <p>United States</p>
+          <p>{{ userInfo.homeCountry }}</p>
         </div>
       </div>
       <button @click="modalVisible = !modalVisible">Edit Profile Info</button>
@@ -45,12 +46,13 @@ export default {
       }
     },
     computed: {
-      firstName() {
-            return this.$store.state.user_info.firstName;
-        },
-        lastName() {
-            return this.$store.state.user_info.lastName;
+      formattedBirthday() {
+        if (this.userInfo.birthday) {
+            const date = new Date(this.userInfo.birthday);
+            return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
         }
+        return '';
+    }
     },
     methods: {
       getInfo(id) {
@@ -67,7 +69,7 @@ export default {
         try {
           AuthService.updateInfo(userInfo).then(response => {
             if(response.status === 200) {
-              this.getInfo(this.$store.state.user.userID);
+              this.getInfo(this.$store.state.user.userID);    
           }
         });
         } catch {
@@ -75,6 +77,7 @@ export default {
         }},
       close() {
         this.modalVisible = false;
+        this.getInfo(this.userInfo.userId);
       }
     }
 }

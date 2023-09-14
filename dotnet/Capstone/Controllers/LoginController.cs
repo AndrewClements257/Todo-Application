@@ -74,5 +74,11 @@ namespace Capstone.Controllers
         {
             return userDao.GetUserInfo(user_id);
         }
+
+        [HttpPut("/info")]
+        public bool UpdateUserInfo(UserInfo user_info)
+        {
+            return userDao.UpdateUserInfo(user_info);
+        }
     }
 }

@@ -53,15 +53,15 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT user_id, first_name, last_name FROM user_info WHERE user_id = @user_id", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT user_id, first_name, last_name, birthday, home_country FROM user_info WHERE user_id = @user_id", conn);
                     cmd.Parameters.AddWithValue("@user_id", user_id);
-                    // returnUser.UserId = user_id;
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
                         returnUser = GetUserInfoFromReader(reader);
                     }
+                    returnUser.UserId = user_id;
                 }
             }
             catch (SqlException)
@@ -80,9 +80,11 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("UPDATE todo SET first_name = @first_name, last_name = @last_name WHERE user_id = @user_id;", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE user_info SET first_name = @first_name, last_name = @last_name, birthday = @birthday, home_country = @home_country WHERE user_id = @user_id;", conn);
                     cmd.Parameters.AddWithValue("@first_name", user_info.FirstName);
                     cmd.Parameters.AddWithValue("@last_name", user_info.LastName);
+                    cmd.Parameters.AddWithValue("@birthday", user_info.Birthday);
+                    cmd.Parameters.AddWithValue("@home_country", user_info.HomeCountry);
                     cmd.Parameters.AddWithValue("@user_id", user_info.UserId);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -144,7 +146,10 @@ namespace Capstone.DAO
             UserInfo u = new UserInfo()
             {
                 FirstName = Convert.ToString(reader["first_name"]),
-                LastName = Convert.ToString(reader["last_name"])
+                LastName = Convert.ToString(reader["last_name"]),
+                Birthday = Convert.ToString(reader["birthday"]),
+                HomeCountry = Convert.ToString(reader["home_country"])
+
             };
 
             return u;

@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <h1 class="app-name">Andysoft Todo</h1>
+    <h1 class="app-name">Andysoft To Do</h1>
     <form class="login-form" @submit.prevent="login">
       <h1 class="login-title">Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">

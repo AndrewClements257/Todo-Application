@@ -1,7 +1,8 @@
 <template>
   <section class="sidebar">
     <div class="user-info">
-        <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ" class="avatar" />
+        <!-- <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ" class="avatar" /> -->
+        <img src="../me.jpg" />
         <p>{{ firstName }} {{ lastName }}</p>
     </div>
     <ul>
@@ -150,6 +151,7 @@ export default {
         background-color: #4368E3;
         color: white;
         padding: 5px;
+        border-radius: 2px;
     }
 
     .sidebar>form>button:hover {
@@ -185,7 +187,7 @@ export default {
     .user-info>img {
         border-radius: 20px;
         width: 45px;
-        padding-right: 5px;
+        margin-right: 5px;
     }
 
     .delete {

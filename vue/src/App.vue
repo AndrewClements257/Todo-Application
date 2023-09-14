@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav" v-if="this.$route.name != 'login' && this.$route.name != 'register'">
       <div class="name" v-if="this.$route.name == 'home' || this.$route.name == 'profile'">
-        <h1>Andysoft Todo</h1>
+        <h1>Andysoft To Do</h1>
       </div>
       <div class="links">
         <router-link v-bind:to="{ name: 'home' }" v-if="this.$route.name == 'profile'">Home</router-link>

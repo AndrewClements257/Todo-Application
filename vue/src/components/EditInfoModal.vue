@@ -2,7 +2,7 @@
     <div id="modal-container">
         <div class="form-container">
             <button @click="close">x</button>
-            <form class="edit-user-info" @submit.prevent="">
+            <form class="edit-user-info" @submit.prevent="updateInfo(userInfo)">
                 <ul>
                     <li class="title">Edit User Info</li>
                     <li>
@@ -25,15 +25,21 @@
 </template>
 
 <script>
+import AuthService from '../services/AuthService';
+
 export default {
     name: "EditInfoModal",
+    created () {
+      this.getInfo(this.$store.state.user.userId);
+    },
     data() {
         return {
             userInfo: {
                 firstName: "",
                 lastName: "",
                 birthday: "",
-                homeCountry: ""
+                homeCountry: "",
+                userId: ""
             }
         }
     },
@@ -41,6 +47,26 @@ export default {
     close() {
       this.$emit("close");
     },
+    getInfo(id) {
+        try {
+          AuthService.getInfo(id).then(response => {
+            if(response.status === 200) {
+              this.userInfo = response.data;
+          }
+        });
+        } catch {
+          console.error("Error fetching user info")
+        }},
+        updateInfo(userInfo) {
+        try {
+          AuthService.updateInfo(userInfo).then(response => {
+            if(response.status === 200) {
+              this.close();    
+          }
+        });
+        } catch {
+          console.error("Error updating user info")
+        }},
   },
 }
 </script>
