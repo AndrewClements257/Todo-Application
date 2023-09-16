@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import Sidebar from '../components/Sidebar.vue';
-import TodoList from '../components/TodoList.vue';
+import Sidebar from "../components/Sidebar.vue";
+import TodoList from "../components/TodoList.vue";
 
 export default {
   name: "home",
-  components: { 
-    TodoList, 
-    Sidebar 
-    },
+  components: {
+    TodoList,
+    Sidebar,
+  },
 };
 </script>
 
 <style scoped>
-  .home {
-    display: flex;
-  }
+.home {
+  display: flex;
+}
 </style>

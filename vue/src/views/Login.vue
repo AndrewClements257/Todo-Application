@@ -11,14 +11,29 @@
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
-        <input class="login-input" type="text" id="username" v-model="user.username" required autofocus />
+        <input
+          class="login-input"
+          type="text"
+          id="username"
+          v-model="user.username"
+          required
+          autofocus
+        />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
-        <input class="login-input" type="password" id="password" v-model="user.password" required />
+        <input
+          class="login-input"
+          type="password"
+          id="password"
+          v-model="user.password"
+          required
+        />
       </div>
       <button class="login-button" type="submit">Sign in</button>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      <router-link :to="{ name: 'register' }"
+        >Need an account? Sign up.</router-link
+      >
     </form>
   </div>
 </template>
@@ -35,31 +50,31 @@ export default {
         username: "",
         password: "",
         first_name: "",
-        last_name: ""
+        last_name: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     async login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
 
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -72,13 +87,12 @@ label {
   font-size: 1em;
   font-weight: normal;
   text-align: center;
-
 }
 #login {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4368E3;
+  background-color: #4368e3;
   width: 100%;
   height: 100%;
 }
@@ -89,10 +103,10 @@ label {
   max-width: 400px;
   width: 90%;
   color: white;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
-  background: rgba(255, 255, 255, 0.1); 
-  border-radius: 10px; 
-  backdrop-filter: blur(3px); 
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -106,7 +120,7 @@ label {
 .app-name {
   font-size: 5em;
   font-weight: 600;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.14);
   text-align: center;
   margin-top: 32px;
   margin-bottom: 64px;
@@ -135,14 +149,12 @@ label {
   background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
 }
 
-.login-form>a:hover {
-        color: rgb(203, 194, 252);
-    }
+.login-form > a:hover {
+  color: rgb(203, 194, 252);
+}
 
-.login-form>a,a:visited {
-        color: white;
-    }
-
-    
-
+.login-form > a,
+a:visited {
+  color: white;
+}
 </style>

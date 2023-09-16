@@ -1,21 +1,19 @@
 <template>
-<div>
+  <div>
     <div class="user-profile">
-      <div class="top-image">
-      
-      </div>
+      <div class="top-image"></div>
       <div class="avatar">
         <!-- <img src="https://fastly.picsum.photos/id/1011/60/60.jpg?hmac=4II0YyADT2KJxllHkW78APiqvJhLFYqmxdcYgE0_VcQ"/> -->
-              <img src="../me.jpg" />
+        <img src="../me.jpg" />
         <h1>{{ userInfo.firstName }} {{ userInfo.lastName }}</h1>
-         <hr>
+        <hr />
       </div>
       <div class="profile-info">
         <div class="info">
           <p>Date of Birth</p>
           <p>{{ formattedBirthday }}</p>
         </div>
-        <br>
+        <br />
         <div class="info">
           <p>Home Country</p>
           <p>{{ userInfo.homeCountry }}</p>
@@ -24,70 +22,71 @@
       <button @click="modalVisible = !modalVisible">Edit Profile Info</button>
     </div>
     <Transition>
-    <edit-info-modal v-if="modalVisible" @close="close" />
+      <edit-info-modal v-if="modalVisible" @close="close" />
     </Transition>
-    </div>
+  </div>
 </template>
 
 <script>
-import EditInfoModal from '../components/EditInfoModal.vue';
-import AuthService from '../services/AuthService';
+import EditInfoModal from "../components/EditInfoModal.vue";
+import AuthService from "../services/AuthService";
 
 export default {
-    name: 'profile',
-    components: { EditInfoModal },
-    created () {
-      this.getInfo(this.$store.state.user.userId);
-    },
-    data() {
-      return {
-        userInfo: {},
-        modalVisible: false
+  name: "profile",
+  components: { EditInfoModal },
+  created() {
+    this.getInfo(this.$store.state.user.userId);
+  },
+  data() {
+    return {
+      userInfo: {},
+      modalVisible: false,
+    };
+  },
+  computed: {
+    formattedBirthday() {
+      if (this.userInfo.birthday) {
+        const date = new Date(this.userInfo.birthday);
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
       }
+      return "";
     },
-    computed: {
-      formattedBirthday() {
-        if (this.userInfo.birthday) {
-            const date = new Date(this.userInfo.birthday);
-            return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-        }
-        return '';
-    }
-    },
-    methods: {
-      getInfo(id) {
-        try {
-          AuthService.getInfo(id).then(response => {
-            if(response.status === 200) {
-              this.userInfo = response.data;
+  },
+  methods: {
+    getInfo(id) {
+      try {
+        AuthService.getInfo(id).then((response) => {
+          if (response.status === 200) {
+            this.userInfo = response.data;
           }
         });
-        } catch {
-          console.error("Error fetching user info")
-        }},
-        updateInfo(userInfo) {
-        try {
-          AuthService.updateInfo(userInfo).then(response => {
-            if(response.status === 200) {
-              this.getInfo(this.$store.state.user.userID);    
+      } catch {
+        console.error("Error fetching user info");
+      }
+    },
+    updateInfo(userInfo) {
+      try {
+        AuthService.updateInfo(userInfo).then((response) => {
+          if (response.status === 200) {
+            this.getInfo(this.$store.state.user.userID);
           }
         });
-        } catch {
-          console.error("Error updating user info")
-        }},
-      close() {
-        this.modalVisible = false;
-        this.getInfo(this.userInfo.userId);
+      } catch {
+        console.error("Error updating user info");
       }
-    }
-}
+    },
+    close() {
+      this.modalVisible = false;
+      this.getInfo(this.userInfo.userId);
+    },
+  },
+};
 </script>
 
 <style scoped>
 .user-profile {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   padding-top: 50px;
   width: 100%;
@@ -95,7 +94,7 @@ export default {
   font-size: 20px;
 }
 
-.user-profile>img {
+.user-profile > img {
   margin-bottom: 40px;
 }
 
@@ -116,16 +115,16 @@ export default {
   width: 100%;
 }
 
-.avatar>h1 {
+.avatar > h1 {
   font-weight: 500;
   font-size: 35px;
 }
 
-.avatar>img {
-    border-radius: 100px;
-        width: 200px;
-        padding-right: 5px;
-        margin-top: -100px;
+.avatar > img {
+  border-radius: 100px;
+  width: 200px;
+  padding-right: 5px;
+  margin-top: -100px;
 }
 
 hr {
@@ -136,9 +135,14 @@ hr {
 .top-image {
   padding: 82px;
   width: 100vw;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
-  background: rgb(133,113,242);
-  background: linear-gradient(156deg, rgba(133,113,242,1) 0%, rgba(0,167,255,1) 50%, rgba(133,113,242,1) 100%);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.14);
+  background: rgb(133, 113, 242);
+  background: linear-gradient(
+    156deg,
+    rgba(133, 113, 242, 1) 0%,
+    rgba(0, 167, 255, 1) 50%,
+    rgba(133, 113, 242, 1) 100%
+  );
 }
 
 .info {
@@ -147,21 +151,21 @@ hr {
   justify-content: space-between;
 }
 
-.info>p:nth-child(odd) {
+.info > p:nth-child(odd) {
   font-weight: 500;
 }
 
-.user-profile>button {
+.user-profile > button {
   width: 20%;
   border: none;
-  background-color: #4368E3;
+  background-color: #4368e3;
   color: white;
   padding: 15px;
   font-size: 20px;
   border-radius: 4px;
 }
 
-.user-profile>button:hover {
+.user-profile > button:hover {
   background-image: linear-gradient(to bottom right, #7f0cf2, dodgerblue);
   cursor: pointer;
 }
