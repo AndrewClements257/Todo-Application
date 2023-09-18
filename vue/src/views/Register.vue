@@ -175,5 +175,14 @@ label {
 a:visited {
   color: white;
 }
+
+@media screen and (max-width: 525px) {
+
+.app-name {
+  font-size: 2.8em;
+  margin-bottom: 32px;
+}
+
+}
 </style>
 

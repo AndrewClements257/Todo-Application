@@ -7,11 +7,11 @@
       <form v-on:submit.prevent="createTodo()">
         <input
           type="text"
-          placeholder="Todo Name"
+          placeholder="To Do Name"
           v-model="newTodo.name"
           required
         />
-        <button>Add Todo</button>
+        <button>Add To Do</button>
       </form>
     </div>
     <div class="list">

@@ -120,7 +120,7 @@ li {
 }
 
 li > input {
-  height: 2vw;
+  height: 40px;
 }
 
 .form-container {
@@ -176,5 +176,21 @@ li > input {
 
 li > input {
   width: 55%;
+}
+
+@media screen and (max-width: 525px) {
+
+  .form-container {
+    width: 95%;
+  }
+
+  li > input {
+    width: 80%;
+  }
+
+  .form-container {
+    height: 55%;
+  }
+
 }
 </style>

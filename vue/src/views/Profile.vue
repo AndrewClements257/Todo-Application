@@ -179,4 +179,19 @@ hr {
 .v-leave-to {
   opacity: 0;
 }
+
+@media screen and (max-width: 525px) {
+
+  hr {
+  width: 80%;
+}
+
+.user-profile > button {
+  width: 80%;
+}
+
+.profile-info {
+  width: 80%;
+}
+}
 </style>
