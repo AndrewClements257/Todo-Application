@@ -190,6 +190,10 @@ export default {
   padding-left: 25px;
 }
 
+.sidebar li:hover {
+  cursor: pointer;
+}
+
 .sidebar > form > input[type="text"] {
   margin: 0px 0px 10px 15px;
 }
